@@ -83,6 +83,15 @@
 .kol-1-5 {
 	width: 20%;
 }
+.kol-2-5 {
+	width: 40%;
+}
+.kol-3-5 {
+	width: 60%;
+}
+.kol-4-5 {
+	width: 80%;
+}
 
 .kol-1-6, .kol-2-12 {
 	width: 16.667%;

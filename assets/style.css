@@ -208,6 +208,14 @@ td {
     height: auto;
 }
 
+.solid {
+  border-style: solid;
+}
+
+.dashed {
+  border-style: dashed;
+}
+
 .width-5 * {
     width: 5%;
 }
@@ -374,8 +382,8 @@ td {
     content: '';
     background: url("../assets/logos/logo_institution.png") no-repeat;
     background-size: 100% 100%;
-    width: 288px;
-    height: 50px;
+    width: 140px;
+    height: 140px;
     position: absolute;
     bottom: 2em;
     left: 3.3em;
