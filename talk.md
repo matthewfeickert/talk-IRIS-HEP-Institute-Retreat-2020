@@ -11,12 +11,12 @@ count: false
 <br>
 [matthew.feickert@cern.ch](mailto:matthew.feickert@cern.ch)
 
-[2020 IRIS-HEP Institute Retreat](https://indico.cern.ch/event/896167/timetable/#20200527)
+[2020 IRIS-HEP Institute Retreat](https://indico.cern.ch/event/896167/contributions/3880229/)
 
 May 27th, 2020
 
 ---
-# pyhf core dev team
+# `pyhf` core dev team
 
 <br>
 
@@ -69,11 +69,11 @@ Provide constraints on models through setting best limits
 
 - All require .bold[building statistical models] and .bold[fitting models] to data to perform statistical inference
 - Model complexity can be huge for complicated searches
-- **Problem:** Time to fit can be .bold[literally days]
+- **Problem:** Time to fit can be .bold[many hours]
 - .blue[Goal:] Empower analysts with fast fits and expressive models
 
 ---
-# Analysis Systems through the lens of pyhf
+# Analysis Systems through the lens of `pyhf`
 .center[
 .width-75[[![analysis-systems-scope](figures/ecosystem.png)](https://iris-hep.org/as.html)]
 ]
@@ -89,15 +89,15 @@ class: middle
 
 ---
 # Full likelihoods (3) preserved on HEPData
-
 - Background-only model JSON stored
 - Signal models stored as JSON Patch files
 - Together are able to fully preserve the full model (with own DOI! .width-20[[![DOI](https://img.shields.io/badge/DOI-10.17182%2Fhepdata.89408.v1%2Fr2-blue.svg)](https://doi.org/10.17182/hepdata.89408.v1/r2)] )
+- c.f. Matthew's [CHEP 2019 talk](https://indico.cern.ch/event/773049/contributions/3476143/), Lukas's [LHCP 2020 talk](https://indico.cern.ch/event/856696/contributions/3742293/)
 
-[.center.width-70[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1748602)
+[.center.width-65[![HEPData_likelihoods](figures/HEPData_likelihoods.png)]](https://www.hepdata.net/record/ins1748602)
 
 ---
-# Publications using pyhf
+# Publications using `pyhf`
 
 .kol-1-2.center.width-95[
 .center.width-100[[![ATLAS_PUB_Note_title](figures/ATLAS_PUB_Note_title.png)](https://cds.cern.ch/record/2684863)]
@@ -134,7 +134,7 @@ Before this was a pretty painful step!]
 .center.width-70[[![SUSY_EWK_3L_validation](figures/SUSY_RPV_pyhf.png)](https://indico.cern.ch/event/905793/contributions/3811068/)]
 ]
 ]
-.center.smaller[SUSY EWK 3L RPV analysis ([ATLAS-CONF-2020-009](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2020-009/)): Exclusion curves as a function of mass and branching fraction to $Z$ bosons]
+.center.smaller[SUSY [EWK 3L RPV](https://atlas.cern/updates/physics-briefing/fantastic-decays-and-where-find-them) analysis ([ATLAS-CONF-2020-009](https://atlas.web.cern.ch/Atlas/GROUPS/PHYSICS/CONFNOTES/ATLAS-CONF-2020-009/)): Exclusion curves as a function of mass and branching fraction to $Z$ bosons]
 ]
 
 ---
@@ -156,7 +156,7 @@ Before this was a pretty painful step!]
 .italic.smaller[
 So here is one of our first reasonable validation plots.
 It's preliminary, the black line is ATLAS-SUSY-2018-04 official exclusion curve.
-The grey line is SModelS using pyhf, running over the published data. &mdash; Wolfgang Waltenberger, CMS/SModelS
+The grey line is SModelS using `pyhf`, running over the published data. &mdash; Wolfgang Waltenberger, CMS/SModelS
 ]
 ]
 
@@ -169,7 +169,7 @@ The grey line is SModelS using pyhf, running over the published data. &mdash; Wo
    - Confirmed by dev team in discussion on GitHub Issue
    - Agreed with dev team I would write a PR, which was reviewed and merged in timely manner
 - Along with Henry and Jim, now have upstream contributions to open source .bold[directly originating] from IRIS-HEP work
-- pyhf will .bold[need this bug fix] in the next TFP release, and .bold[thousands] of other projects will benefit
+- `pyhf` will .bold[need this bug fix] in the next TFP release, and .bold[thousands] of other projects will benefit
 - Bonus: Continuing goodwill development
 ]
 .kol-1-2[
@@ -202,12 +202,14 @@ class: middle
 - `pyhf` becomes mature in its feature set
    - Stat Config
    - Non-asymptotic calculators (toys in `v0.5.0`)
+   - Norm factor expressions
 - Validation across all backends against `HistFactory`
    - [`pyhf` GitHub org](https://github.com/pyhf) setup to help streamline process
    - Reproduction of published analyses on HEPData
 - Documented examples
    - Case studies
    - Public knowledge base ([`pyhf` Stack Overflow](https://stackoverflow.com/questions/tagged/pyhf))
+   - Rosetta stone (and what can't be done) between `ROOT` `HistFactory` and `pyhf`
 ]
 .kol-1-2[
 .center.width-100[[![pyhf_GitHub_org.png](figures/pyhf_GitHub_org.png)](https://github.com/pyhf)]
@@ -239,7 +241,7 @@ class: middle
 .kol-1-3[
 - Most obvious connections:
    - [ServiceX](https://github.com/ssl-hep/ServiceX): direct data transform and delivery
-      - Illlinois team dynamic between Ben and Matthew
+      - Illinois team dynamic between Ben and Matthew
    - [`cabinetry`](https://github.com/alexander-held/cabinetry): general interfacing to other tools
       - c.f. [Alex's poster from 2020 Poster Session](https://indico.cern.ch/event/894127/attachments/1996570/3331188/18_-_AS_Final_analysis_stages.pdf) for more details
 ]
@@ -259,23 +261,15 @@ class: middle
 
 `pyhf` HistFactory model spec is pure JSON: Very natural to use a .blue[REST web API] for remote fitting!
 
-<br>
-
 .kol-1-3[
+<br><br>
 1. `pyhf` installed on different clusters with GPUs around the world
-2. User hits a REST API with JSON `pyhf` model as a request
+2. User hits a REST API with JSON `pyhf` workspace as a request
 3. `pyhf` fits the workspace on the cluster on demand
 4. Returns fit results over REST API to user
 ]
 .kol-2-3[
-- Figure out what to show here as some sort of mock code fancied up in Carbon
-- ```
-curl -H "Content-Type: application/json" \
-    -H "Authorization: token OAUTH-TOKEN" \
-    --user username \
-    --data "@model-spec.json" \
-    https://www.endpoint.org/fitting-with-pyhf
-```
+.center.width-90[![carbon_fitting_as_a_service](figures/carbon_fitting_as_a_service.png)]
 ]
 
 
@@ -293,7 +287,7 @@ curl -H "Content-Type: application/json" \
 - Allows for entire likelihood to be natively supported in HEPData (no more tarballs required)
 ]
 .kol-1-2[
-.center.width-100[[![HEPData_native_support](figures/HEPData_native_support.png)](hhttps://github.com/HEPData/hepdata/issues/164)]
+.center.width-100[[![HEPData_native_support](figures/HEPData_native_support.png)](https://github.com/HEPData/hepdata/issues/164)]
 <br>
 .center.width-100[[![HEPData_patchset](figures/carbon_patchset.png)](https://github.com/HEPData/hepdata/issues/164#issuecomment-625516324)]
 ]
@@ -320,12 +314,16 @@ Following up on [Kyle's presentation yesterday](https://indico.cern.ch/event/896
 .center[.bold[ServiceX to perform event selection and deliver histograms for .blue[`pyhf` model]]]
 
 <br>
-- Should be relatively easy to translate from ServiceX output to `pyhf` JSON model
-- Though moving the translation from `pyhf` to `cabinetry` seems like a more robust solution
+- Should be relatively easy to translate from ServiceX output to `pyhf` JSON model, but probably don't want to
+- Moving the translation from `pyhf` to `cabinetry` seems like a more robust solution
 - `cabinetry` has ability to be a powerful tool, but to `pyhf` translation is most interesting
    - ServiceX to `cabinetry`: data delivery
    - `cabinetry` to `pyhf`: constructing of likelihood
 - If useful, Matthew could join contribution efforts
+- Alex has pointed out this is even mostly doable now with `TRExFitter`
+   - ServiceX feeding histograms to `TRExFitter`
+   - Convert XML to JSON with [`pyhf xml2json`](https://scikit-hep.org/pyhf/cli.html#pyhf-xml2json)
+   - Fit with `pyhf`
 
 ---
 # `pyhf`: Fitting as a service
